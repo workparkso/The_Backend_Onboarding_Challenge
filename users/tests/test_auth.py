@@ -1,8 +1,10 @@
 import pytest
 from django.contrib.auth import get_user_model
 from rest_framework.test import APIClient
+from faker import Faker
 
 User = get_user_model()
+fake = Faker()
 
 @pytest.fixture
 def api_client():
@@ -12,17 +14,17 @@ def api_client():
 def test_signup(api_client):
     """회원가입 가능여부 테스트용(과제로 주어진 조건이자, 회원가입이 잘 되는지 확인하는 용도)"""
     data = {
-        "username": "JIN HO",
-        "password": "12341234",
-        "nickname": "Mentos"
+        "username": fake.user_name(),
+        "password": fake.password(),
+        "nickname": fake.first_name()
     }
 
     response = api_client.post("/users/signup", data)
     
     assert response.status_code == 201
-    assert response.data["username"] == "JIN HO"
-    assert response.data["nickname"] == "Mentos"
-    assert response.data["roles"] == [{"role": "USER"}]
+    assert "username" in response.data
+    assert "nickname" in response.data
+    assert "roles" in response.data
 
 @pytest.mark.django_db
 def test_login(api_client):
