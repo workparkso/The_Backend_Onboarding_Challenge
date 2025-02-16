@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # 추가된 앱은 여기서부터
-    "rest_framework"
+    "rest_framework",
     "users",
 ]
 
