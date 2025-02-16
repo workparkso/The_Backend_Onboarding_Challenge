@@ -6,6 +6,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import TokenRefreshView
 from .serializers import SignupSerializer
 
+# JWT 관련 기능 추가
 User = get_user_model()
 
 class SignupView(APIView):
