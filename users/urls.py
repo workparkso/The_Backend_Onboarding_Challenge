@@ -1,11 +1,17 @@
 from django.urls import path
 from . import views
-from rest_framework_simplejwt.views import TokenRefreshView
 
 app_name = "users"
 
 urlpatterns = [
-    path("signup", views.signup, name="signup"),
-    path("login", views.login, name="login"),
-    path("refresh", TokenRefreshView.as_view(), name="refresh"),
+    path("signup", views.SignupView.as_view(), name="signup"),
+    path("login", views.LoginView.as_view(), name="login"),
+    path("refresh", views.CustomTokenRefreshView.as_view(), name="refresh"),
+    path("token/verify", views.TokenVerifyView.as_view(), name="token_verify"),
 ]
+
+]
+
+# 기존에는 함수형인 views.~로 작성했으나,
+# Django REST framework의 클래스형 뷰는 코드 재사용성과 유지보수 측면에서 유리하므로, 
+# as_view() 방식으로 통일
