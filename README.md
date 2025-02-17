@@ -160,16 +160,28 @@ http://localhost:8000/swagger/
 
 ```
 The_Backend_Onboarding_Challenge/
-│── onboardingtest/         # Django 프로젝트 폴더
-│   ├── users/              # 사용자 인증 관련 앱
-│   ├── settings.py         # 환경 설정 파일
-│   ├── urls.py             # URL 라우팅 설정
-│   └── wsgi.py             # WSGI 설정
-│── docker-compose.yml      # Docker Compose 설정 파일
-│── Dockerfile              # Docker 빌드 설정 파일
-│── requirements.txt        # 프로젝트 종속 패키지 목록
-│── manage.py               # Django 관리 명령어 실행 파일
-└── README.md               # 프로젝트 문서
+├── README.md               # 프로젝트 설명 파일
+├── docker-compose.yml       # Docker 컨테이너 설정 파일
+├── Dockerfile               # Docker 이미지 빌드 파일
+├── init.sql                 # 초기 데이터베이스 설정 파일
+├── manage.py                # Django 관리 명령어 파일
+├── users/                   # 사용자 관련 코드 디렉토리
+│   ├── __init__.py          # 패키지 초기화 파일
+│   ├── admin.py             # Django admin 설정 파일
+│   ├── apps.py              # Django 애플리케이션 설정 파일
+│   ├── models.py            # 데이터베이스 모델 정의 파일
+│   ├── serializers.py       # 데이터 직렬화 파일
+│   ├── tests/test_auth.py   # 인증 관련 테스트 파일
+│   ├── tests.py             # 일반 테스트 파일
+│   ├── views.py             # 요청 처리 로직 파일
+│   ├── urls.py              # URL 경로 설정 파일
+│   └── migrations/          # 데이터베이스 마이그레이션 파일
+│       ├── __init__.py      # 마이그레이션 초기화 파일
+│       └── 0001_initial.py  # 첫 번째 마이그레이션 파일
+├── requirements.txt         # 필요한 파이썬 패키지 목록
+└── ...                      # 기타 파일들
+
+
 ```
 
 ## 테스트 방법
@@ -240,8 +252,8 @@ docker-compose exec web python manage.py migrate
 
 ## 기여 방법
 
-- Pull Request를 통해 기능 추가 및 버그 수정
-- 이슈 트래커를 활용한 버그 신고 및 개선 제안
+- Pull Request를 통해 기능 추가 및 버그 및 충돌 수정 
+- 기존 공부한 것들을 최대한 활용 및 ai 리뷰의 도움
 
 
 
