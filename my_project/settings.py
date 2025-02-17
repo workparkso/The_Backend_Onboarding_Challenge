@@ -71,12 +71,11 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'db_name',
         'USER': 'db_user',
-        'PASSWORD': 'dbpassword',
-        'HOST': 'db',  # 여기서 "db"가 데이터베이스 컨테이너의 호스트 이름이어야 함
+        'PASSWORD': 'dbpassword123',
+        'HOST': 'db',  # 컨테이너 이름으로 변경
         'PORT': '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
