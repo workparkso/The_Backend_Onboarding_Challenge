@@ -3,48 +3,40 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
-from rest_framework_simplejwt.views import TokenRefreshView
+from rest_framework_simplejwt.views import TokenRefreshView, TokenObtainPairView
 from .serializers import SignupSerializer
+from django.shortcuts import render
+from django.views import View
+from rest_framework import status
+from rest_framework.decorators import api_view
+from django.contrib.auth.models import User
 
 # JWT 관련 기능 추가
 User = get_user_model()
 
 class SignupView(APIView):
-    permission_classes = [AllowAny]
-
     def post(self, request):
-        """회원가입 API"""
-        serializer = SignupSerializer(data=request.data)
-        if serializer.is_valid():
-            user = serializer.save()
-            return Response({
-                "username": user.username,
-                "nickname": user.nickname,
-                "roles": user.roles,
-            }, status=201)
-        return Response(serializer.errors, status=400)
+        username = request.data.get('username')
+        password = request.data.get('password')
+        if not username or not password:
+            return Response({'error': 'Username and password are required'}, status=status.HTTP_400_BAD_REQUEST)
+        user = User.objects.create_user(username=username, password=password)
+        refresh = RefreshToken.for_user(user)
+        return Response({
+            'refresh': str(refresh),
+            'access': str(refresh.access_token),
+        })
 
-class LoginView(APIView):
-    permission_classes = [AllowAny]
-
-    def post(self, request):
-        """로그인 API"""
-        username = request.data.get("username")
-        password = request.data.get("password")
-
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            refresh = RefreshToken.for_user(user)
-            return Response({"token": str(refresh.access_token)}, status=200)
-        
-        return Response({"error": "Invalid credentials"}, status=400)
+class LoginView(TokenObtainPairView):
+    # 로그인 뷰
+    pass
 
 class ProtectedView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        """JWT 인증이 필요한 API"""
-        return Response({"message": "This is a protected API!"})
+        return Response({"message": "This is a protected view"})
 
 class CustomTokenRefreshView(TokenRefreshView):
+    # 토큰 갱신 뷰
     pass
