@@ -55,7 +55,10 @@
 
 ### 2. 백엔드 배포하고 개선하기
 
-**2-1 . AWS EC2에 배포하여 서비스 운영 환경 구축**
+**2-1 . Docker에 띄우기**
+![image](https://github.com/user-attachments/assets/aa10056f-ac88-4afa-9a49-f57b4f05bbbb)
+
+**2-2 . AWS EC2에 배포하여 서비스 운영 환경 구축**
 ![image](https://github.com/user-attachments/assets/ad033738-a14c-41ae-9832-2d2ba4022335)
 
 
