@@ -56,6 +56,8 @@
 ### 2. 백엔드 배포하고 개선하기
 
 **2-1 . AWS EC2에 배포하여 서비스 운영 환경 구축**
+![image](https://github.com/user-attachments/assets/ad033738-a14c-41ae-9832-2d2ba4022335)
+
 
 **2-2. API 접근과 검증**
 
@@ -78,6 +80,7 @@
 
 
 ### 4. AWS EC2 재배포하기로 마무리
+![image](https://github.com/user-attachments/assets/7794e0e5-1c9e-4b03-b910-215fc9e1d72c)
 
 ---
 ## 🛠 기술 스택
